@@ -1,4 +1,4 @@
-> {-# LANGUAGE DataKinds, StandaloneKindSignatures, TypeFamilies #-}
+> {-# LANGUAGE DataKinds, StandaloneKindSignatures, TypeFamilies, UndecidableInstances #-}
 
 New extension alert!
 
@@ -46,4 +46,4 @@ What do you expect the result of `CmpNat 6 7` to be? Check with ghci.
 
 What do you expect the result of `CmpNat 6` to be? Check with ghci.
 
-Use `CmpNat` to write a few tests for `AddOne`.
+Use `CmpNat` to test `AddOne` on a few different inputs.

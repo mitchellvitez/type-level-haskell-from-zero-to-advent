@@ -39,7 +39,6 @@ The rest of the HTS definition looks a lot like the POH definition.
 >   Or True  _ = True
 >   Or False x = x
 
-
 For practice, define each of these HTS functions:
 1. `And`, based on POH `(&&)`
 2. `Not`, based on POH `not`

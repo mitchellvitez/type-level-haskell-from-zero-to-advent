@@ -1,4 +1,4 @@
-> {-# LANGUAGE DataKinds, StandaloneKindSignatures, TypeFamilies #-}
+> {-# LANGUAGE DataKinds, StandaloneKindSignatures, TypeFamilies, UndecidableInstances #-}
 
 > import GHC.TypeLits (Symbol)
 

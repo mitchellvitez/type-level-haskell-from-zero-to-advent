@@ -1,4 +1,4 @@
-> {-# LANGUAGE DataKinds, StandaloneKindSignatures, TypeFamilies #-}
+> {-# LANGUAGE DataKinds, StandaloneKindSignatures, TypeFamilies, UndecidableInstances #-}
 
 > import GHC.TypeLits (Symbol, UnconsSymbol)
 
@@ -12,22 +12,33 @@ Copy over your SymbolChars HTS function from the last exercise, and replace this
 >   SymbolCharsHelper ('Just '(first, rest)) = first ': SymbolChars rest
 
 With the ability to treat a Symbol as a [Char], we can now start parsing inputs.
-Write an HTS function `Lines` to split the lines of a [Char] input into a [[Char]].
-Test it on this poem ("The Kitten" by Odgen Nash):
 
-> type Poem = "The trouble with a kitten is\nTHAT\nEventually it becomes a\nCAT."
+1. Write an HTS function `ParseDigit :: Char -> Nat`.
+It takes any single digit character and converts it into a number.
+Advent of Code input is always well-formed, so `ParseDigit` can simply
+ignore any input that isn't actually a digit.
 
-Write an HTS function `CharsNat :: [Char] -> Nat`.
+Incidentally, what are our other options for error handling in HTS?
+
+
+2. Write an HTS function `ParseNat :: [Char] -> Nat`.
 It should act like the equivalent of the POH `read :: String -> Int` (ignoring negatives).
+Test it on this `Number`.
 
-What are our options for handling bad inputs?
-For example, instead of "123"...something like "hello"?
+> type Number = SymbolChars "8675309"
 
-Finally, put the previous two parsers together and parse this `Numbers` Symbol into a `[Nat]`.
 
-> type Numbers = "101\n8675309\n31\n525600\n555"
+3. Write an HTS function `ParseLines` to split the lines of a [Char] input into a [[Char]].
+Test it on this poem ("The Kitten" by Odgen Nash).
 
-As a bonus exercise, try implementing some sort of generic HTS `Map`.
+> type Poem = SymbolChars "The trouble with a kitten is\nTHAT\nEventually it becomes a\nCAT."
+
+
+4. Finally, put the previous parser pieces together and write `ParseNatList :: Symbol -> [Nat]`.
+Test it on some inputs like `NumberList` below.
+
+Try implementing this with a generic HTS `Map` function.
 It should act like POH's `map :: (a -> b) -> [a] -> [b]`.
-Try not to spend too long on this. If successful, refactor your Numbers parser to use Map.
-What kinds of issues did you run into? What did you learn?
+What issues did you run into? What did you learn?
+
+> type NumberList = "123\n8675309\n0\n525600\n555"
